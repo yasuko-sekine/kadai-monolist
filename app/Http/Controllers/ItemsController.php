@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+
+
 class ItemsController extends Controller
 {
     /**
@@ -73,7 +75,13 @@ class ItemsController extends Controller
      */
     public function show($id)
     {
-        //
+      $item = \App\Item::find($id);
+      $want_users = $item->want_users;
+
+      return view('items.show', [
+          'item' => $item,
+          'want_users' => $want_users,
+      ]);
     }
 
     /**
